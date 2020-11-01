@@ -17,13 +17,17 @@ python3 IQtoMorse.py iqdata fs -plot
 ###### Arguments:
 1. **iqdata** - path to raw iq data (sequentially stored float32 I and Q components) 
 2. **fs** - sample frequency in hertz
-3. **fs** - cutoff frequency in hertz [optional]
+3. **fc** - cutoff frequency in hertz [optional]
 4. **-plot** - enables plot [optional]
 
 The cutoff frequency is taken from frequency automatically in case no optional cutoff frequency has given.
 
-###### Example:
+###### Examples:
 ```console
 python3 IQtoMorse.py data/partae 67000 -plot
 ```
+```console
+python3 IQtoMorse.py data/partae 67000 -plot -fc 1000
+```
+
 
