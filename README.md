@@ -2,9 +2,7 @@
 
 IQtoMorse is a simple signal analytical morse decoder which decodes raw iq samples based on probabilistic signal analysis.
 
-###### Plot
 ![IQtoMorse.png](https://github.com/eikeviehmann/IQtoMorse/blob/main/IQtoMorse.png?raw=true)
-###### Terminal 
 ```
 [[(0, 2), (3, 5), (6, 9)], [(10, 12)]]
 [['.-.', '-.-', '....'], ['...']]
