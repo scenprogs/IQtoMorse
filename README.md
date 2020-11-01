@@ -11,9 +11,9 @@ python3 IQtoMorse.py iqdata fs -plot
 Arguments:
 1. **iqdata** - path to raw iq data (sequentially stored float32 I and Q components) 
 2. **fs** sample frequency in hertz
-3. -plot [optional]
+3. *-plot* [optional]
 
-## Example
+Example:
 ```
 python3 IQtoMorse.py data/partae 67000 -plot
 ```
