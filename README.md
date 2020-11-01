@@ -20,8 +20,8 @@ python3 IQtoMorse.py iqdata fs -plot
 3. **-fc** - cutoff frequency in hertz **[optional]**
 4. **-plot** - enables plot **[optional]**
 
-File with raw iq data should hold sequentially stored float32 I and Q components.
-The cutoff frequency is taken from frequency domain automatically in case no optional cutoff frequency has given.
+File with raw iq data should hold **sequentially stored float32 I and Q components**.<br/>
+The cutoff frequency is taken **from frequency domain automatically** in case no optional cutoff frequency has given.
 
 ###### Examples:
 ```console
