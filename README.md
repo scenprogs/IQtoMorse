@@ -2,8 +2,9 @@
 
 IQtoMorse is a simple signal analytical morse decoder which decodes raw iq samples based on probabilistic signal analysis.
 
+## Plot
 ![IQtoMorse.png](https://github.com/eikeviehmann/IQtoMorse/blob/main/IQtoMorse.png?raw=true)
-
+## Terminal 
 ```console
 Identified frequency of morse keying at 37.96729945499092 Hz
 Peaks:
