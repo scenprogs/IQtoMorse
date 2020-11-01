@@ -15,11 +15,12 @@ RKH S
 python3 IQtoMorse.py iqdata fs -plot
 ```
 ###### Arguments:
-1. **iqdata** - path to raw iq data (sequentially stored float32 I and Q components) 
+1. **iqdata** - path to file with raw iq data  
 2. **fs** - sample frequency in hertz
-3. **fc** - cutoff frequency in hertz [optional]
-4. **-plot** - enables plot [optional]
+3. **fc** - cutoff frequency in hertz **[optional]**
+4. **-plot** - enables plot **[optional]**
 
+File with raw iq data should hold sequentially stored float32 I and Q components.
 The cutoff frequency is taken from frequency domain automatically in case no optional cutoff frequency has given.
 
 ###### Examples:
