@@ -8,9 +8,9 @@ IQtoMorse is a simple signal analytical morse decoder which decodes raw iq sampl
 ```
 python3 IQtoMorse.py iqdata samplefrequency -plot
 ```
-## Terminal parameters
-1. iqdata - path to raw iq data []
-2. samplefrequency in hertz []
+Arguments:
+1. iqdata - path to raw iq data (sequentially stored float32 I and Q components) 
+2. samplefrequency in hertz
 3. -plot [optional]
 
 ## Example
