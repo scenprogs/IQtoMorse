@@ -23,6 +23,7 @@ def between(value, range):
     else:
         return False
 
+
 def butter_lowpass_filter(samples, fc, fs, order=3):
     # Normalize the frequency
     w = fc / (fs / 2)
@@ -277,10 +278,8 @@ morse_code = {
     '_': '\n'
 }
 
-# Plotting disable at default
+# Plotting disabled at default
 enable_plot = False
-export_pgf = False
-export_png = False
 
 # Take timestamp for runtime estimation
 dt_start = datetime.datetime.now()
@@ -292,7 +291,7 @@ required = parser.add_argument_group('required arguments')
 optional = parser.add_argument_group('optional arguments')
 required.add_argument('file', metavar="file", type=lambda x: is_valid_file(parser, x), help="input i/q raw file")
 required.add_argument('fs', metavar='fs', type=int, nargs='+', help='sample frequency')
-optional.add_argument('-fc', metavar='fc', type=int, nargs='+', help='cutoff frequency')
+optional.add_argument('-fc', metavar='fc', type=float, nargs='+', help='cutoff frequency')
 optional.add_argument("-plot", action="store_true")
 args = parser.parse_args()
 
@@ -300,7 +299,7 @@ args = parser.parse_args()
 f_samplerate = args.fs[0]
 enable_plot = args.plot
 
-# Import raw I/Q samples (from fiven file)
+# Import raw I/Q samples
 samples = []
 samples = np.fromfile(args.file, dtype="float32")
 samples = samples[0::2] + 1j * samples[1::2]
@@ -311,23 +310,23 @@ t = len(samples) / f_samplerate
 print(f"Imported sample with {n} vectors which belongs to a {n / f_samplerate}s ({(n / f_samplerate) * 1000}ms) record")
 
 # (1) Spectral analysis
-if args.fc:
-    # If no cutoff frequency given through arguments examine cutoff frequency with fft
-    f_peak = args.fc[0]
-else:
-    # Transform given time domain signal into frequency domain with FFT. Applying FFT onto real signal gives us
-    # the frequency spectrum of our signal. While a morse signal (Continous Wave, CW) has no bandwidth we are
-    # looking after a single frequency in spectrum with largest magnitude.
 
-    # Apply FFT to our signal
-    X_f = abs(np.fft.fft(samples))
-    # Calculate frequencies
-    freq = (f_samplerate / 2) * np.linspace(0, 1, n // 2)
-    # Only take the positive frequencies
-    xl_m = (2/1) * abs(X_f[0:np.size(freq)])
-    # Take the frequency from spectrum with largest magnitude
-    f_peak = freq[xl_m.argmax()]
-    print('Identified frequency of morse keying at ' + str(f_peak) + ' Hz')
+# Transform given time domain signal into frequency domain with FFT. Applying FFT onto real signal gives us
+# the frequency spectrum of our signal. While a morse signal (Continous Wave, CW) has no bandwidth we are
+# looking after a single frequency in spectrum with largest magnitude.
+
+# Apply FFT to our signal
+X_f = abs(np.fft.fft(samples))
+# Calculate frequencies
+freq = (f_samplerate / 2) * np.linspace(0, 1, n // 2)
+# Only take the positive frequencies
+xl_m = (2 / 1) * abs(X_f[0:np.size(freq)])
+# Take the frequency from spectrum with largest magnitude
+f_peak = freq[xl_m.argmax()]
+print('Identified frequency of morse keying at ' + str(f_peak) + ' Hz')
+
+if args.fc:
+    f_peak = 0.0 + args.fc[0]
 
 # (2) Low pass filter
 # Apply low pass butterworth filter
@@ -441,7 +440,7 @@ if enable_plot:
 
     ''' Row 1 Col 3 : PSD of real signal (zoomed in)'''
     ax = fig.add_subplot(gs[0, 2])
-    ax.axvline(f_peak, color='black', linestyle='dashed', linewidth=1, label=f"Cutoff frequency ({f_peak.round(2)} Hz)")
+    ax.axvline(f_peak, color='black', linestyle='dashed', linewidth=1, label=f"Cutoff frequency ({round(f_peak, 2)} Hz)")
     ax.plot(freq, xl_m, label="Spectrum of real signal", color='grey');
     ax.set_ylabel('magnitude')
     ax.set_xlabel('frequency (Hz)')
