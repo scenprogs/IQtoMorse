@@ -20,7 +20,7 @@ python3 IQtoMorse.py iqdata fs -plot
 3. **fc** - cutoff frequency in hertz [optional]
 4. **-plot** - enables plot [optional]
 
-The cutoff frequency is taken from frequency automatically in case no optional cutoff frequency has given.
+The cutoff frequency is taken from frequency domain automatically in case no optional cutoff frequency has given.
 
 ###### Examples:
 ```console
