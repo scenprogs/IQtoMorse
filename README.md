@@ -1,6 +1,6 @@
 # IQtoMorse
 
-IQtoMorse is a simple signal analytical morse decoder which decodes raw iq samples based on probabilistic signal analysis.
+IQtoMorse is a simple **signal analytical morse decoder** which decodes **raw iq samples** based on **probabilistic signal analysis** using python3, numpy, scipy and matplotlib.
 
 ![IQtoMorse.png](https://github.com/eikeviehmann/IQtoMorse/blob/main/IQtoMorse.png?raw=true)
 ```
